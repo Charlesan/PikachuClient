@@ -61,6 +61,7 @@
             android:text="个人信息"
             android:textColor="@color/text_color"
             android:textSize="15sp"
+            android:drawableLeft="@drawable/person_info_icon_24"
             android:background="#00000000" />
 
         <include
@@ -76,6 +77,7 @@
             android:gravity="center_vertical"
             android:paddingLeft="20dp"
             android:text="雷达"
+            android:drawableLeft="@drawable/radar_icon_24"
             android:textColor="@color/text_color"
             android:textSize="15sp"
             android:background="#00000000" />
@@ -93,6 +95,7 @@
             android:gravity="center_vertical"
             android:paddingLeft="20dp"
             android:text="摄像头"
+            android:drawableLeft="@drawable/camera_icon_24"
             android:textColor="@color/text_color"
             android:textSize="15sp"
             android:background="#00000000" />
@@ -110,6 +113,7 @@
             android:gravity="center_vertical"
             android:paddingLeft="20dp"
             android:text="图鉴"
+            android:drawableLeft="@drawable/illustrated_handbook_icon_24"
             android:textColor="@color/text_color"
             android:textSize="15sp"
             android:background="#00000000" />
@@ -127,6 +131,7 @@
             android:gravity="center_vertical"
             android:paddingLeft="20dp"
             android:text="全球排名"
+            android:drawableLeft="@drawable/ranking_24"
             android:textColor="@color/text_color"
             android:textSize="15sp" 
             android:background="#00000000"/>
@@ -144,6 +149,7 @@
             android:gravity="center_vertical"
             android:paddingLeft="20dp"
             android:text="设置"
+            android:drawableLeft="@drawable/setting_24"
             android:textColor="@color/text_color"
             android:textSize="15sp" 
             android:background="#00000000"/>
@@ -161,6 +167,7 @@
             android:gravity="center_vertical"
             android:paddingLeft="20dp"
             android:text="退出登录"
+            android:drawableLeft="@drawable/exit_icon_24"
             android:textColor="@color/text_color"
             android:textSize="15sp" 
             android:background="#00000000"/>

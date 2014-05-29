@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentTransaction;
 
 import com.pikachu.res.R;
 import com.pikachu.slidingmenu.fragment.LeftFragment;
+import com.pikachu.slidingmenu.fragment.MainFragment;
 import com.pikachu.slidingmenu.fragment.RightFragment;
 import com.pikachu.slidingmenu.fragment.ViewPageFragment;
 import com.pikachu.slidingmenu.fragment.ViewPageFragment.MyPageChangeListener;
@@ -16,13 +17,15 @@ public class SlidingActivity extends FragmentActivity {
 	LeftFragment leftFragment;
 	RightFragment rightFragment;
 	ViewPageFragment viewPageFragment;
+	
+//	MainFragment mainFragment;
 
 	@Override
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
 		setContentView(R.layout.main); //设置该Activity的布局
 		init();
-		initListener();
+		//initListener();
 	}
 
 	private void init() {
@@ -43,25 +46,26 @@ public class SlidingActivity extends FragmentActivity {
 		t.replace(R.id.right_frame, rightFragment);
 
 		viewPageFragment = new ViewPageFragment();
-		t.replace(R.id.center_frame, viewPageFragment);
+//		t.replace(R.id.center_frame, viewPageFragment);
+		t.replace(R.id.center_frame, new MainFragment());
 		t.commit();
 	}
 
-	private void initListener() {
-		viewPageFragment.setMyPageChangeListener(new MyPageChangeListener() {
-			
-			@Override
-			public void onPageSelected(int position) {
-				if(viewPageFragment.isFirst()){
-					mSlidingMenu.setCanSliding(true,false);
-				}else if(viewPageFragment.isEnd()){
-					mSlidingMenu.setCanSliding(false,true);
-				}else{
-					mSlidingMenu.setCanSliding(false,false);
-				}
-			}
-		});
-	}
+//	private void initListener() {
+//		viewPageFragment.setMyPageChangeListener(new MyPageChangeListener() {
+//			
+//			@Override
+//			public void onPageSelected(int position) {
+//				if(viewPageFragment.isFirst()){
+//					mSlidingMenu.setCanSliding(true,false);
+//				}else if(viewPageFragment.isEnd()){
+//					mSlidingMenu.setCanSliding(false,true);
+//				}else{
+//					mSlidingMenu.setCanSliding(false,false);
+//				}
+//			}
+//		});
+//	}
 
 	public void showLeft() {
 		mSlidingMenu.showLeftView();

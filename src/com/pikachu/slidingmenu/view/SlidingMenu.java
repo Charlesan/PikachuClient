@@ -28,7 +28,7 @@ public class SlidingMenu extends RelativeLayout {
 	private int mTouchSlop;
 	private float mLastMotionX;
 	private float mLastMotionY;
-	private static final int VELOCITY = 50;
+	private static final int VELOCITY = 100; //速度
 	private boolean mIsBeingDragged = true;
 	private boolean tCanSlideLeft = true;
 	private boolean tCanSlideRight = false;
