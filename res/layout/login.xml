@@ -18,24 +18,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/login"
+        android:layout_marginLeft="10dp"
         android:layout_marginRight="5dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="47dp"
         android:textSize="28dp"
         android:text="用户帐号:"/>
     <EditText 
         android:id="@+id/edname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
         android:layout_marginBottom="30dp"
         android:layout_below="@id/login"
         android:layout_toRightOf="@id/txtname"
         android:layout_alignParentRight="true"
          android:hint="请输入用户帐号"/>
-        <TextView 
+    <TextView 
         android:id="@+id/txtpassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/txtname"
+        android:layout_marginLeft="10dp"
         android:layout_marginRight="5dp"
         android:textSize="28dp"
         android:text="用户密码:"/>
@@ -45,6 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/edname"
         android:layout_toRightOf="@id/txtpassword"
+        android:layout_marginRight="10dp"
         android:layout_alignParentRight="true"
         android:inputType="textPassword"
         android:hint="请输入用户密码"/>

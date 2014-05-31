@@ -148,7 +148,7 @@
             android:layout_height="50dp"
             android:gravity="center_vertical"
             android:paddingLeft="20dp"
-            android:text="设置"
+            android:text="修改账户密码"
             android:drawableLeft="@drawable/setting_24"
             android:textColor="@color/text_color"
             android:textSize="15sp" 

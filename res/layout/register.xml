@@ -19,7 +19,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/txt1"
-        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="47dp"
         android:layout_marginRight="5dp"
         android:text="帐号:"
         android:textSize="28dp" />
@@ -30,7 +31,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_below="@id/txt1"
-         android:layout_toRightOf="@id/txtname1"
+        android:layout_toRightOf="@id/txtname1"
+        android:layout_marginRight="10dp"
         android:layout_marginBottom="30dp" />
 
     <TextView
@@ -39,6 +41,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/txtname1"
         android:layout_marginRight="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="43dp"
         android:text="密码:"
         android:textSize="28dp" />
 
@@ -48,13 +52,34 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_below="@id/edname1"
+        android:layout_marginRight="10dp"
+        android:layout_toRightOf="@id/txtpassword1"
+        android:layout_marginBottom="30dp" />
+    
+    <TextView
+        android:id="@+id/txtnickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtpassword1"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="10dp"
+        android:text="昵称:"
+        android:textSize="28dp" />
+
+    <EditText
+        android:id="@+id/ednickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/edpassword1"
+        android:layout_marginRight="10dp"
         android:layout_toRightOf="@id/txtpassword1" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/edpassword1"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="65dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal" >
 
@@ -64,5 +89,11 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
             android:text="提交数据" />
+        
+        <Button
+            android:id="@+id/btreturn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="返回登录" />
     </LinearLayout>
 </RelativeLayout>

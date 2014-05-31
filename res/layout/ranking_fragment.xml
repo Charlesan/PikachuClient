@@ -5,32 +5,127 @@
     android:background="@color/bg_color" >
 
     <RelativeLayout
+        android:id="@+id/head_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/head_layout"
-        android:padding="5dip"
-        android:background="#fff" >
+        android:background="#fff"
+        android:padding="5dip" >
 
         <Button
             android:id="@+id/rankingHeadButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:background="#ffffff"
+            android:drawableLeft="@drawable/ranking_32"
             android:paddingLeft="10dp"
             android:text="全球排名"
-            android:textSize="25sp"
-            android:drawableLeft="@drawable/ranking_32"
-            android:background="#ffffff" />      
+            android:textSize="25sp" />
     </RelativeLayout>
-    
-    <TextView
-        android:id="@+id/rankingTextView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="排名界面"
-        android:textSize="40sp"
-        android:gravity="center" />
+
+    <TableLayout
+        android:id="@+id/rankingTable"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:shrinkColumns="1"
+        android:stretchColumns="0,1" >
+        
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:gravity="center"
+                android:text="排名"
+                android:textSize="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="账号"
+                android:gravity="center"
+                android:textSize="20dp" />
+        </TableRow>
+        
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:gravity="center"
+                android:text="1"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="ID1223"
+                android:gravity="center"
+                android:textSize="15dp" />
+        </TableRow>
+        
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:text="1"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="ID1223"
+                android:gravity="center"
+                android:textSize="15dp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:text="1"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="ID1223"
+                android:gravity="center"
+                android:textSize="15dp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:gravity="center"
+                android:text="1"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:text="ID1223"
+                android:gravity="center"
+                android:textSize="15dp" />
+        </TableRow>
+    </TableLayout>
 
 </RelativeLayout>

@@ -2,6 +2,7 @@ package com.pikachu.slidingmenu.view;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.Display;
 import android.view.MotionEvent;
@@ -9,10 +10,13 @@ import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Scroller;
 
 import com.pikachu.res.R;
+import com.pikachu.slidingmenu.fragment.LeftFragment;
+import com.pikachu.slidingmenu.fragment.MainFragment;
 
 public class SlidingMenu extends RelativeLayout {
 
@@ -34,6 +38,10 @@ public class SlidingMenu extends RelativeLayout {
 	private boolean tCanSlideRight = false;
 	private boolean hasClickLeft = false;
 	private boolean hasClickRight = false;
+	
+	private boolean LeftButtonsClickable = false; 
+	
+	private float startX = 0, endX = 0;
 
 	public SlidingMenu(Context context) {
 		super(context);
@@ -152,7 +160,7 @@ public class SlidingMenu extends RelativeLayout {
 		final float x = ev.getX();
 		final float y = ev.getY();
 		switch (action) {
-		case MotionEvent.ACTION_DOWN:
+		case MotionEvent.ACTION_DOWN: //手指按下去
 			mLastMotionX = x;
 			mLastMotionY = y;
 			mIsBeingDragged = false;
@@ -217,6 +225,8 @@ public class SlidingMenu extends RelativeLayout {
 
 		switch (action) {
 		case MotionEvent.ACTION_DOWN:
+			System.out.println("ACTION_DOWN");
+			startX = ev.getX();
 			if (!mScroller.isFinished()) {
 				mScroller.abortAnimation();
 			}
@@ -233,52 +243,83 @@ public class SlidingMenu extends RelativeLayout {
 			}
 
 			break;
-		case MotionEvent.ACTION_MOVE:
+		case MotionEvent.ACTION_MOVE: //滑动的时候执行了这个分支
+//			System.out.println("ACTION_MOVE");
+//			System.out.println(startX + "," + endX);
+////			System.out.println("MotionEvent.ACTION_MOVE");
+//			showLeftView();
+//			if ( LeftButtonsClickable ) {
+//				setLeftFragmentButtonsClickable(false);
+//				LeftButtonsClickable = false;
+//			}
+//			else {
+//				setLeftFragmentButtonsClickable(true);
+//				LeftButtonsClickable = true;
+//			}
 			if (mIsBeingDragged) {
-				final float deltaX = mLastMotionX - x;
-				mLastMotionX = x;
-				float oldScrollX = mSlidingView.getScrollX();
-				float scrollX = oldScrollX + deltaX;
-				if (canSlideLeft) {
-					if (scrollX > 0)
-						scrollX = 0;
-				}
-				if (canSlideRight) {
-					if (scrollX < 0)
-						scrollX = 0;
-				}
-				if (deltaX < 0 && oldScrollX < 0) { // left view
-					final float leftBound = 0;
-					final float rightBound = -getMenuViewWidth();
-					if (scrollX > leftBound) {
-						scrollX = leftBound;
-					} else if (scrollX < rightBound) {
-						scrollX = rightBound;
-					}
-				} else if (deltaX > 0 && oldScrollX > 0) { // right view
-					final float rightBound = getDetailViewWidth();
-					final float leftBound = 0;
-					if (scrollX < leftBound) {
-						scrollX = leftBound;
-					} else if (scrollX > rightBound) {
-						scrollX = rightBound;
-					}
-				}
-				if (mSlidingView != null) {
-					mSlidingView.scrollTo((int) scrollX,
-							mSlidingView.getScrollY());
-					if (scrollX < 0)
-						bgShade.scrollTo((int) scrollX + 20,
-								mSlidingView.getScrollY());
-					else
-						bgShade.scrollTo((int) scrollX - 20,
-								mSlidingView.getScrollY());
-				}
+				System.out.println("ACTION_MOVE");
+				System.out.println(startX + "," + endX);
+//				System.out.println("MotionEvent.ACTION_MOVE");
+				showLeftView();
+//				final float deltaX = mLastMotionX - x;
+//				mLastMotionX = x;
+//				float oldScrollX = mSlidingView.getScrollX();
+//				float scrollX = oldScrollX + deltaX;
+//				if (canSlideLeft) {
+//					System.out.println("riririi");
+//					if (scrollX > 0)
+//						scrollX = 0;
+//				}
+//				if (canSlideRight) {
+//					System.out.println("caocaocao");
+//					if (scrollX < 0)
+//						scrollX = 0;
+//				}
+//				if (deltaX < 0 && oldScrollX < 0) { // left view
+//					System.out.println("左左");
+//					final float leftBound = 0;
+//					final float rightBound = -getMenuViewWidth();
+//					if (scrollX > leftBound) {
+//						System.out.println("1111");
+//						scrollX = leftBound;
+//					} else if (scrollX < rightBound) {
+//						System.out.println("22222");
+//						scrollX = rightBound;
+//					}
+//				} else if (deltaX > 0 && oldScrollX > 0) { // right view
+//					System.out.println("右右");
+//					final float rightBound = getDetailViewWidth();
+//					final float leftBound = 0;
+//					if (scrollX < leftBound) {
+//						scrollX = leftBound;
+//					} else if (scrollX > rightBound) {
+//						scrollX = rightBound;
+//					}
+//				}
+//				if (mSlidingView != null) {
+//					System.out.println("拿到");
+//					System.out.println("scrollX"+ scrollX);
+//					System.out.println("");
+//					mSlidingView.scrollTo((int) scrollX,
+//							mSlidingView.getScrollY());
+//					if (scrollX < 0) { //都是执行这个分支！
+//						bgShade.scrollTo((int) scrollX + 20,
+//								mSlidingView.getScrollY());
+//						System.out.println("有阴影，划开");
+//					}
+//					else {
+//						bgShade.scrollTo((int) scrollX - 20,
+//								mSlidingView.getScrollY());
+//						System.out.println("无阴影，关闭");
+//					}
+//				}
 
 			}
 			break;
 		case MotionEvent.ACTION_CANCEL:
-		case MotionEvent.ACTION_UP:
+		case MotionEvent.ACTION_UP: //手指离开屏幕
+			System.out.println("ACTION_UP");
+			endX = ev.getX();
 			if (mIsBeingDragged) {
 				final VelocityTracker velocityTracker = mVelocityTracker;
 				velocityTracker.computeCurrentVelocity(100);
@@ -366,7 +407,9 @@ public class SlidingMenu extends RelativeLayout {
 //		System.out.println("menuWidth:" + menuWidth);
 //		System.out.println("oldScrollX" + oldScrollX);
 		if (oldScrollX == 0) { //划开侧边栏
-//			System.out.println("oldScrollX == 0");
+			setLeftFragmentButtonsClickable(true);
+			LeftButtonsClickable = true;
+			System.out.println("划开侧边栏mMenuView.setEnabled(true);");
 			mMenuView.setVisibility(View.VISIBLE);
 			mDetailView.setVisibility(View.INVISIBLE);
 			smoothScrollTo(-menuWidth);
@@ -375,7 +418,9 @@ public class SlidingMenu extends RelativeLayout {
 			hasClickLeft = true;
 			setCanSliding(true, false);
 		} else if (oldScrollX == -menuWidth) { //收起侧边栏
-//			System.out.println("oldScrollX == -menuWidth");
+			setLeftFragmentButtonsClickable(false);
+			LeftButtonsClickable = false;
+			System.out.println("收起侧边栏mMenuView.setEnabled(false);");
 			smoothScrollTo(menuWidth);
 			if (hasClickLeft) {
 				hasClickLeft = false;
@@ -403,6 +448,19 @@ public class SlidingMenu extends RelativeLayout {
 				setCanSliding(tCanSlideLeft, tCanSlideRight);
 			}
 		}
+	}
+	
+	/**
+	 * @author Wang Chao
+	 */
+	private void setLeftFragmentButtonsClickable(boolean clickable) {
+		mMenuView.findViewById(R.id.main_fragment_button).setClickable(clickable);
+		mMenuView.findViewById(R.id.radar_button).setClickable(clickable);
+		mMenuView.findViewById(R.id.camera_button).setClickable(clickable);
+		mMenuView.findViewById(R.id.illustrated_handbook_button).setClickable(clickable);
+		mMenuView.findViewById(R.id.my_ranking_button).setClickable(clickable);
+		mMenuView.findViewById(R.id.setting_button).setClickable(clickable);
+		mMenuView.findViewById(R.id.exit_button).setClickable(clickable);
 	}
 
 }

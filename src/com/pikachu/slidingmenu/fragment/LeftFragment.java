@@ -28,7 +28,7 @@ public class LeftFragment extends Fragment implements OnClickListener {
 	
 	//用于记录当前被点击的侧边栏按钮
 	private Button currentButton;
-
+	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.left, null);
@@ -141,4 +141,13 @@ public class LeftFragment extends Fragment implements OnClickListener {
 
 	}
 
+	public Button getMainFragmentButton() {
+		return mainFragmentButton;
+	}
+
+	public void setMainFragmentButton(Button mainFragmentButton) {
+		this.mainFragmentButton = mainFragmentButton;
+	}
+	
+	
 }

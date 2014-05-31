@@ -38,6 +38,8 @@ public class LoginActivity extends Activity {
 				Intent intent = new Intent();
 				intent.setClass(LoginActivity.this, RegistersActivity.class);
 				startActivity(intent);
+				// 销毁当前activity
+				LoginActivity.this.onDestroy();
 			}
 		});
 		btlogin.setOnClickListener(new LoginListener());
@@ -65,6 +67,8 @@ public class LoginActivity extends Activity {
 				Intent intent = new Intent();
 				intent.setClass(LoginActivity.this, SlidingActivity.class);
 				startActivity(intent);
+				// 销毁当前activity
+				LoginActivity.this.onDestroy();
 			}
 		}
 

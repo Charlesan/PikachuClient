@@ -16,6 +16,7 @@ public class RegistersActivity extends Activity {
 	private EditText edname1;
 	private EditText edpassword1;
 	private Button btregister1;
+	private Button btreturn;
 
 	@Override
 	protected void onDestroy() {
@@ -30,6 +31,7 @@ public class RegistersActivity extends Activity {
 		edname1 = (EditText) findViewById(R.id.edname1);
 		edpassword1 = (EditText) findViewById(R.id.edpassword1);
 		btregister1 = (Button) findViewById(R.id.btregister1);
+		btreturn = (Button) findViewById(R.id.btreturn);
 		
 		btregister1.setOnClickListener(new OnClickListener() {
 			@Override
@@ -70,6 +72,17 @@ public class RegistersActivity extends Activity {
 
 			}
 		});
-
+		
+		btreturn.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// 跳转到登录界面
+				Intent in = new Intent();
+				in.setClass(RegistersActivity.this, LoginActivity.class);
+				startActivity(in);
+				// 销毁当前activity
+				RegistersActivity.this.onDestroy();
+			}
+		});
 	}
 }
