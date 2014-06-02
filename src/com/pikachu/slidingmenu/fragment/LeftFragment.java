@@ -11,9 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.TextView;
 import android.widget.Button;
 
 import com.pikachu.activity.SlidingActivity;
+import com.pikachu.bean.LoginUserInfo;
+import com.pikachu.bean.UserBean;
 import com.pikachu.res.R;
 
 public class LeftFragment extends Fragment implements OnClickListener {
@@ -32,6 +35,12 @@ public class LeftFragment extends Fragment implements OnClickListener {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.left, null);
+		
+		UserBean loginUser = LoginUserInfo.getInstance().getLoginUser();
+		TextView name_textview = (TextView)view.findViewById(R.id.name_textview);
+		name_textview.setText(loginUser.getU_login_id());
+		TextView grade_textview = (TextView)view.findViewById(R.id.grade_textview);
+		grade_textview.setText(loginUser.getU_name());
 
 		mainFragmentButton = (Button) view
 				.findViewById(R.id.main_fragment_button);
@@ -71,43 +80,43 @@ public class LeftFragment extends Fragment implements OnClickListener {
 			currentButton.setBackgroundColor(Color.TRANSPARENT);
 			currentButton = mainFragmentButton;
 			mainFragmentButton.setBackgroundColor(Color.GRAY);
-			ft.replace(R.id.center_frame, new MainFragment());
 			((SlidingActivity) getActivity()).showLeft();
+			ft.replace(R.id.center_frame, new MainFragment());
 			break;
 		case R.id.radar_button:
 			currentButton.setBackgroundColor(Color.TRANSPARENT);
 			currentButton = radarButton;
 			radarButton.setBackgroundColor(Color.GRAY);
-			ft.replace(R.id.center_frame, new RadarFragment());
 			((SlidingActivity) getActivity()).showLeft();
+			ft.replace(R.id.center_frame, new RadarFragment());
 			break;
 		case R.id.camera_button:
 			currentButton.setBackgroundColor(Color.TRANSPARENT);
 			currentButton = cameraButton;
 			cameraButton.setBackgroundColor(Color.GRAY);
-			ft.replace(R.id.center_frame, new CameraFragment());
 			((SlidingActivity) getActivity()).showLeft();
+			ft.replace(R.id.center_frame, new CameraFragment());
 			break;
 		case R.id.illustrated_handbook_button:
 			currentButton.setBackgroundColor(Color.TRANSPARENT);
 			currentButton = illustratedHandbookButton;
 			illustratedHandbookButton.setBackgroundColor(Color.GRAY);
-			ft.replace(R.id.center_frame, new IllustratedHandbookFragment());
 			((SlidingActivity) getActivity()).showLeft();
+			ft.replace(R.id.center_frame, new IllustratedHandbookFragment());
 			break;
 		case R.id.my_ranking_button:
 			currentButton.setBackgroundColor(Color.TRANSPARENT);
 			currentButton = myRankingButton;
 			myRankingButton.setBackgroundColor(Color.GRAY);
-			ft.replace(R.id.center_frame, new RankingFragment());
 			((SlidingActivity) getActivity()).showLeft();
+			ft.replace(R.id.center_frame, new RankingFragment());
 			break;
 		case R.id.setting_button:
 			currentButton.setBackgroundColor(Color.TRANSPARENT);
 			currentButton = settingButton;
 			settingButton.setBackgroundColor(Color.GRAY);
-			ft.replace(R.id.center_frame, new SettingFragment());
 			((SlidingActivity) getActivity()).showLeft();
+			ft.replace(R.id.center_frame, new SettingFragment());
 			break;
 		case R.id.exit_button:
 			currentButton.setBackgroundColor(Color.TRANSPARENT);

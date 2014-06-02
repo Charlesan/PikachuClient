@@ -1,9 +1,15 @@
 package com.pikachu.activity;
 
+import java.util.List;
+
+import com.pikachu.bean.LoginUserInfo;
+import com.pikachu.bean.UserBean;
+import com.pikachu.dao.UserDao;
 import com.pikachu.res.R;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -19,6 +25,8 @@ public class LoginActivity extends Activity {
 
 	private Button btregister;
 	private Button btlogin;
+	
+	public ProgressDialog dialog = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -55,20 +63,49 @@ public class LoginActivity extends Activity {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			String name = edname.getText().toString();
-			String password = edpassword.getText().toString();
+			final String name = edname.getText().toString();
+			final String password = edpassword.getText().toString();
 			if (name.equals("") || password.equals("")) {
 				// 弹出消息框
 				new AlertDialog.Builder(LoginActivity.this).setTitle("错误")
 						.setMessage("帐号或密码不能空")
 						.setPositiveButton("确定", null).show();
 			} else {
-				//isUserinfo(name, password);
-				Intent intent = new Intent();
-				intent.setClass(LoginActivity.this, SlidingActivity.class);
-				startActivity(intent);
-				// 销毁当前activity
-				LoginActivity.this.onDestroy();
+				final UserDao userDao = new UserDao();
+				if (userDao.login(name, password) == 1) {
+
+					dialog = ProgressDialog.show(LoginActivity.this, "请稍等",
+							"正在登陆中...", true);
+
+					new Thread() {
+						public void run() {
+							LoginUserInfo loginUserInfo = LoginUserInfo
+									.getInstance();
+							if (loginUserInfo != null) {
+								UserBean loginUser = userDao.getUserBean(name);
+								if (loginUser != null) {
+									loginUserInfo.setLoginUser(loginUser);
+								}
+								List<UserBean> topRank = userDao.getTopRank();
+								System.out.println(topRank);
+								loginUserInfo.setTopRank(topRank);
+							}
+							dialog.dismiss();
+							Intent intent = new Intent();
+							intent.setClass(LoginActivity.this,
+									SlidingActivity.class);
+							startActivity(intent);
+							// 销毁当前activity
+							LoginActivity.this.onDestroy();
+						}
+					}.start();
+				}
+				else {
+					// 弹出消息框
+					new AlertDialog.Builder(LoginActivity.this).setTitle("错误")
+							.setMessage("帐号或密码错误，请重新输入！")
+							.setPositiveButton("确定", null).show();
+				}
 			}
 		}
 

@@ -18,8 +18,6 @@ public class SlidingActivity extends FragmentActivity {
 	RightFragment rightFragment;
 	ViewPageFragment viewPageFragment;
 	
-//	MainFragment mainFragment;
-
 	@Override
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
