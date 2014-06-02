@@ -4,14 +4,18 @@ import java.util.List;
 
 import com.pikachu.bean.LoginUserInfo;
 import com.pikachu.bean.UserBean;
+import com.pikachu.dao.MonsterDao;
 import com.pikachu.dao.UserDao;
 import com.pikachu.res.R;
+import com.pikachu.util.Utils;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -27,12 +31,43 @@ public class LoginActivity extends Activity {
 	private Button btlogin;
 	
 	public ProgressDialog dialog = null;
+	
+	private Handler handler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			if ( msg.what == 1 ) {
+				edname.setText("");
+				edpassword.setText("");
+				dialog.dismiss();
+				Intent intent = new Intent();
+				intent.setClass(LoginActivity.this,
+						SlidingActivity.class);
+				startActivity(intent);
+				// 销毁当前activity
+				LoginActivity.this.onDestroy();
+			}
+			else if ( msg.what == 0 ){
+				dialog.dismiss();
+				// 弹出消息框
+				new AlertDialog.Builder(LoginActivity.this).setTitle("错误")
+						.setMessage("帐号或密码错误，请重新输入！")
+						.setPositiveButton("确定", null).show();
+			}
+			else {
+				dialog.dismiss();
+				// 弹出消息框
+				new AlertDialog.Builder(LoginActivity.this).setTitle("错误")
+						.setMessage("网络异常，请检查您的网络！")
+						.setPositiveButton("确定", null).show();
+			}
+		}
+	};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login);
-
+		
 		edname = (EditText) findViewById(R.id.edname);
 		edpassword = (EditText) findViewById(R.id.edpassword);
 		btregister = (Button) findViewById(R.id.btregister);
@@ -70,42 +105,36 @@ public class LoginActivity extends Activity {
 				new AlertDialog.Builder(LoginActivity.this).setTitle("错误")
 						.setMessage("帐号或密码不能空")
 						.setPositiveButton("确定", null).show();
-			} else {
-				final UserDao userDao = new UserDao();
-				if (userDao.login(name, password) == 1) {
-
-					dialog = ProgressDialog.show(LoginActivity.this, "请稍等",
-							"正在登陆中...", true);
-
-					new Thread() {
-						public void run() {
-							LoginUserInfo loginUserInfo = LoginUserInfo
-									.getInstance();
+			} else {			
+				dialog = ProgressDialog.show(LoginActivity.this, "请稍等", "正在登陆中...", true);
+				new Thread() {
+					public void run() {
+						UserDao userDao = new UserDao();
+						MonsterDao monsterDao = new MonsterDao();
+						int result = userDao.login(name, password);
+						Message msg = new Message();
+						if ( result == 1 ) {
+							LoginUserInfo loginUserInfo = LoginUserInfo.getInstance();
 							if (loginUserInfo != null) {
 								UserBean loginUser = userDao.getUserBean(name);
 								if (loginUser != null) {
 									loginUserInfo.setLoginUser(loginUser);
 								}
 								List<UserBean> topRank = userDao.getTopRank();
-								System.out.println(topRank);
 								loginUserInfo.setTopRank(topRank);
+								loginUserInfo.setAllMonster(monsterDao.getAllMonster());
 							}
-							dialog.dismiss();
-							Intent intent = new Intent();
-							intent.setClass(LoginActivity.this,
-									SlidingActivity.class);
-							startActivity(intent);
-							// 销毁当前activity
-							LoginActivity.this.onDestroy();
+							msg.what = 1;
 						}
-					}.start();
-				}
-				else {
-					// 弹出消息框
-					new AlertDialog.Builder(LoginActivity.this).setTitle("错误")
-							.setMessage("帐号或密码错误，请重新输入！")
-							.setPositiveButton("确定", null).show();
-				}
+						else if (result == 11 ){ //密码或账户名错误
+							msg.what = 0;
+						}
+						else {
+							msg.what = -1;
+						}
+						handler.sendMessage(msg);
+					}
+				}.start();
 			}
 		}
 

@@ -7,6 +7,8 @@ public class LoginUserInfo {
 	
 	private List<UserBean> topRank;
 	
+	private List<MonsterBean> allMonster;
+	
 	private volatile static LoginUserInfo loginUserInfo;
 	
 	public static LoginUserInfo getInstance() {
@@ -35,6 +37,14 @@ public class LoginUserInfo {
 
 	public void setTopRank(List<UserBean> topRank) {
 		this.topRank = topRank;
+	}
+
+	public List<MonsterBean> getAllMonster() {
+		return allMonster;
+	}
+
+	public void setAllMonster(List<MonsterBean> allMonster) {
+		this.allMonster = allMonster;
 	}
 	
 }

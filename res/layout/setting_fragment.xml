@@ -44,7 +44,7 @@
         android:textSize="28dp" />
 
     <EditText
-        android:id="@+id/edname"
+        android:id="@+id/edpwd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -66,11 +66,11 @@
         android:textSize="28dp" />
 
     <EditText
-        android:id="@+id/edpassword"
+        android:id="@+id/edrepwd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@id/edname"
+        android:layout_below="@id/edpwd"
         android:layout_marginRight="10dp"
         android:layout_toRightOf="@id/txtpassword"
         android:hint="请再次输入新密码"
@@ -79,7 +79,7 @@
    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/edpassword"
+        android:layout_below="@id/edrepwd"
         android:layout_marginTop="30dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal" >

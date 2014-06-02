@@ -23,68 +23,26 @@
             android:textSize="25sp" />
     </RelativeLayout>
 
-    <TableLayout
-        android:id="@+id/rankingTable"
+    <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="80dp"
-        android:shrinkColumns="1,2"
-        android:stretchColumns="0,1,2" >
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/head_layout"
+        android:layout_weight="1" >
 
-        <TextView
-            android:layout_marginBottom="15dp"
-            android:gravity="center"
-            android:text="您已抓到如下精灵"
-            android:textSize="25dp" />
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
 
-        <TableRow>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:gravity="center"
-                android:text="精灵编号"
-                android:textSize="20dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:gravity="center"
-                android:text="名字"
-                android:textSize="20dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:gravity="center"
-                android:text="图片"
-                android:textSize="20dp" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:gravity="center"
-                android:text="1"
-                android:textSize="15dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:gravity="center"
-                android:text="皮卡丘"
-                android:textSize="15dp" />
-            <ImageView 
-                android:src="@drawable/ic_launcher"/>
-        </TableRow>
-    </TableLayout>
+            <TableLayout
+                android:id="@+id/handbookTable"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center"
+                android:shrinkColumns="1,2"
+                android:stretchColumns="0,1,2" >
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>
