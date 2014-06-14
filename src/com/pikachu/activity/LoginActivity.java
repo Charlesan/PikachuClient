@@ -7,15 +7,19 @@ import com.pikachu.bean.UserBean;
 import com.pikachu.dao.MonsterDao;
 import com.pikachu.dao.UserDao;
 import com.pikachu.res.R;
+import com.pikachu.slidingmenu.fragment.IllustratedHandbookFragment;
 import com.pikachu.util.Utils;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -44,6 +48,7 @@ public class LoginActivity extends Activity {
 						SlidingActivity.class);
 				startActivity(intent);
 				// 销毁当前activity
+				
 				LoginActivity.this.onDestroy();
 			}
 			else if ( msg.what == 0 ){
@@ -91,6 +96,7 @@ public class LoginActivity extends Activity {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
+		LoginActivity.this.finish();
 	}
 	
 	class LoginListener implements OnClickListener {
@@ -120,9 +126,11 @@ public class LoginActivity extends Activity {
 								if (loginUser != null) {
 									loginUserInfo.setLoginUser(loginUser);
 								}
+								loginUserInfo.setCurRank(userDao.getUserRank(name));
 								List<UserBean> topRank = userDao.getTopRank();
 								loginUserInfo.setTopRank(topRank);
-								loginUserInfo.setAllMonster(monsterDao.getAllMonster());
+								loginUserInfo.setLoginUserHandBook(userDao.getUserHandbook(name));
+								loginUserInfo.setIllustratedHandbookFragment(new IllustratedHandbookFragment());
 							}
 							msg.what = 1;
 						}
@@ -139,4 +147,35 @@ public class LoginActivity extends Activity {
 		}
 
 	}
+	
+    protected void dialog() { 
+        AlertDialog.Builder builder = new Builder(LoginActivity.this); 
+        builder.setMessage("确定要退出吗?"); 
+        builder.setTitle("提示"); 
+        builder.setPositiveButton("确认", 
+                new android.content.DialogInterface.OnClickListener() { 
+                    @Override 
+                    public void onClick(DialogInterface dialog, int which) { 
+                        dialog.dismiss(); 
+                        LoginActivity.this.finish(); 
+                    } 
+                }); 
+        builder.setNegativeButton("取消", 
+                new android.content.DialogInterface.OnClickListener() { 
+                    @Override 
+                    public void onClick(DialogInterface dialog, int which) { 
+                        dialog.dismiss(); 
+                    } 
+                }); 
+        builder.create().show(); 
+    } 
+    
+    @Override 
+    public boolean onKeyDown(int keyCode, KeyEvent event) { 
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) { 
+            dialog(); 
+            return false; 
+        } 
+        return false; 
+    }
 }

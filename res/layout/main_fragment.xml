@@ -8,7 +8,7 @@
         android:id="@+id/head_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#fff"
+        android:background="@color/bg_color_deep"
         android:padding="5dip" >
 
         <Button
@@ -16,103 +16,137 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:background="#ffffff"
-            android:drawableLeft="@drawable/person_info_icon_32"
+            android:background="@color/bg_color_deep"
+            android:drawableLeft="@drawable/menu_icon"
             android:paddingLeft="10dp"
-            android:text="个人信息"
             android:textSize="25sp" />
+        
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="个人信息"
+        android:textSize="25sp"
+        android:background="@color/bg_color_deep" />
     </RelativeLayout>
 
-    <TableLayout
+    <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="150dp"
-        android:shrinkColumns="1"
-        android:stretchColumns="0,1" >
+        android:layout_height="fill_parent"
+        android:layout_below="@id/head_layout"
+        android:background="#ffffff" >
 
-        <TableRow>
-
-            <TextView
-                android:id="@+id/txtid"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp"
-                android:layout_marginRight="5dp"
-                android:gravity="right"
-                android:text="帐号:"
-                android:textSize="25dp" />
-
-            <TextView
-                android:id="@+id/txtid2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp"
-                android:layout_marginLeft="10dp"
-                android:textSize="25dp" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/txtnickname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp"
-                android:layout_marginRight="5dp"
-                android:gravity="right"
-                android:text="昵称:"
-                android:textSize="25dp" />
-
-            <TextView
-                android:id="@+id/txtnickname2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp"
-                android:layout_marginLeft="10dp"
-                android:textSize="25dp" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/txtachievement"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp"
-                android:layout_marginRight="5dp"
-                android:gravity="right"
-                android:text="成就:"
-                android:textSize="25dp" />
-
-            <TextView
-                android:id="@+id/txtachievement2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp"
-                android:layout_marginLeft="10dp"
-                android:textSize="25dp" />
-        </TableRow>
-
-        <TableRow>
-
-        <TextView
-            android:id="@+id/txtscore"
-            android:gravity="right"
-            android:layout_width="wrap_content"
+        <TableLayout
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:text="积分:"
-            android:textSize="25dp" />
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:background="#ffffff"
+            android:shrinkColumns="1"
+            android:stretchColumns="0,1" >
 
-        <TextView
-            android:id="@+id/txtscore2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="25dp"
-            android:layout_marginLeft="10dp"
-            android:textSize="25dp" />
-        </TableRow>
-    </TableLayout>
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/txtid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="25dp"
+                    android:layout_marginRight="5dp"
+                    android:gravity="right"
+                    android:text="帐号:"
+                    android:textSize="25dp" />
+
+                <TextView
+                    android:id="@+id/txtid2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="25dp"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="25dp" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/txtnickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="25dp"
+                    android:layout_marginRight="5dp"
+                    android:gravity="right"
+                    android:text="昵称:"
+                    android:textSize="25dp" />
+
+                <TextView
+                    android:id="@+id/txtnickname2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="25dp"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="25dp" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/txtachievement"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="25dp"
+                    android:layout_marginRight="5dp"
+                    android:gravity="right"
+                    android:text="成就:"
+                    android:textSize="25dp" />
+
+                <TextView
+                    android:id="@+id/txtachievement2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="25dp"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="25dp" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/txtscore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:gravity="right"
+                    android:text="积分:"
+                    android:textSize="25dp" />
+
+                <TextView
+                    android:id="@+id/txtscore2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="25dp"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="25dp" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:gravity="right"
+                    android:text="排名:"
+                    android:textSize="25dp" />
+
+                <TextView
+                    android:id="@+id/curRank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="25dp"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="25dp" />
+            </TableRow>
+        </TableLayout>
+    </RelativeLayout>
 
 </RelativeLayout>

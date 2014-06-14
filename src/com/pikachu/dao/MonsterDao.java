@@ -113,14 +113,15 @@ public class MonsterDao {
 						mb.m_ownerid = Integer.parseInt(tem[count*9+9]);
 						mbs.add(mb);
 					}
-					
+					System.out.println("NULL1111111111");
 					return mbs;
 				}
-				
+				System.out.println("NULL22222222222");
 				return null;
 			}
 			else
 			{
+				System.out.println("NULL3333333333333");
 				return null;
 			}
 		}

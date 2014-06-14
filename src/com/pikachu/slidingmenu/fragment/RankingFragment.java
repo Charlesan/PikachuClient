@@ -38,8 +38,11 @@ public class RankingFragment extends Fragment{
 		rankingTable = (TableLayout) view.findViewById(R.id.rankingTable);
 		
 		List<UserBean> topRank = LoginUserInfo.getInstance().getTopRank();
-		for ( int i = 0; i < topRank.size(); i++ ) {
-			addOneRow(i + 1, topRank.get(i));
+//		System.out.println(topRank);
+		if ( topRank != null ) {
+			for ( int i = 0; i < topRank.size(); i++ ) {
+				addOneRow(i + 1, topRank.get(i));
+			}
 		}
 		
 		return view;

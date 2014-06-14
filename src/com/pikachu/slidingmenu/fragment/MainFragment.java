@@ -27,6 +27,7 @@ public class MainFragment extends Fragment {
 	private TextView nickNameTextView;
 	private TextView achievementTextView;
 	private TextView scoreTextView;
+	private TextView curRankView;
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -38,10 +39,12 @@ public class MainFragment extends Fragment {
 		nickNameTextView = (TextView) view.findViewById(R.id.txtnickname2);
 		achievementTextView = (TextView) view.findViewById(R.id.txtachievement2);
 		scoreTextView = (TextView) view.findViewById(R.id.txtscore2);
+		curRankView = (TextView) view.findViewById(R.id.curRank);
 		idTextView.setText(loginUser.getU_login_id());
 		nickNameTextView.setText(loginUser.getU_name());
 		achievementTextView.setText(loginUser.getU_number() + "Ö»¾«Áé");
 		scoreTextView.setText(loginUser.getU_mark() + "");
+		curRankView.setText("" + LoginUserInfo.getInstance().getCurRank());
 		
 		return view;
 	}

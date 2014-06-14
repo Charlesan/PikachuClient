@@ -22,7 +22,6 @@ import com.pikachu.dao.UserDao;
 import com.pikachu.res.R;
 
 /**
- * 用于捕捉精力的fragment
  * @author Wang Chao
  *
  */
@@ -79,6 +78,12 @@ public class SettingFragment extends Fragment{
 				final String txtpwd = pwd.getText().toString();
 				String txtrepwd = repwd.getText().toString();
 				if ( !txtpwd.equals("") && !txtrepwd.equals("") ) {
+					if ( hasSpace(txtpwd) || hasSpace(txtrepwd) ) {
+						new AlertDialog.Builder(getActivity())
+						.setTitle("提示").setMessage("密码中不能包含空格")
+						.setPositiveButton("确定", null).show();
+						return;
+					}
 					if ( !txtpwd.equals(txtrepwd) ) {
 						new AlertDialog.Builder(getActivity())
 						.setTitle("错误").setMessage("两个密码不一致！请重新输入。")
@@ -110,4 +115,13 @@ public class SettingFragment extends Fragment{
 				}
 			}});
 	}
+	
+    private boolean hasSpace(String str) {
+    	for ( int i = 0; i < str.length(); i++ ) {
+    		if ( str.charAt(i) == ' ' ) {
+    			return true;
+    		}
+    	}
+    	return false;
+    }
 }

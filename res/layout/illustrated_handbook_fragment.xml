@@ -8,7 +8,7 @@
         android:id="@+id/head_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#fff"
+        android:background="@color/bg_color_deep"
         android:padding="5dip" >
 
         <Button
@@ -16,17 +16,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:background="#ffffff"
-            android:drawableLeft="@drawable/illustrated_handbook_icon_32"
+            android:background="@color/bg_color_deep"
+            android:drawableLeft="@drawable/menu_icon"
             android:paddingLeft="10dp"
-            android:text="图鉴"
             android:textSize="25sp" />
+        
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="图鉴"
+        android:textSize="25sp"
+        android:background="@color/bg_color_deep" />
     </RelativeLayout>
 
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_below="@+id/head_layout"
+        android:background="#ffffff"
         android:layout_weight="1" >
 
         <LinearLayout

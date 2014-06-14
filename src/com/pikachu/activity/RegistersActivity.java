@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -76,6 +77,7 @@ public class RegistersActivity extends Activity {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
+		RegistersActivity.this.finish();
 	}
 
 	@Override
@@ -96,7 +98,13 @@ public class RegistersActivity extends Activity {
 				final String name = edname1.getText().toString();
 				final String password = edpassword1.getText().toString();
 				final String nickname = ednickname.getText().toString();
-				if (!(name.equals("") && password.equals("") && nickname.equals(""))) {
+				if (!name.equals("") && !password.equals("") && !nickname.equals("")) {
+					if ( hasSpace(name) || hasSpace(password) || hasSpace(nickname) ) {
+						new AlertDialog.Builder(RegistersActivity.this)
+						.setTitle("提示").setMessage("帐号密码昵称中不能包含空格")
+						.setPositiveButton("确定", null).show();
+						return;
+					}
 					dialog = ProgressDialog.show(RegistersActivity.this, "请稍等", "提交数据中...", true);
 					new Thread() {
 						public void run() {
@@ -117,7 +125,7 @@ public class RegistersActivity extends Activity {
 					}.start();
 				} else {
 					new AlertDialog.Builder(RegistersActivity.this)
-							.setTitle("帐号密码昵称不能为空").setMessage("帐号密码昵称不能为空")
+							.setTitle("提示").setMessage("帐号密码昵称不能为空")
 							.setPositiveButton("确定", null).show();
 				}
 
@@ -136,4 +144,27 @@ public class RegistersActivity extends Activity {
 			}
 		});
 	}
+	
+    @Override 
+    public boolean onKeyDown(int keyCode, KeyEvent event) { 
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) { 
+			// 跳转到登录界面
+			Intent in = new Intent();
+			in.setClass(RegistersActivity.this, LoginActivity.class);
+			startActivity(in);
+			// 销毁当前activity
+			RegistersActivity.this.onDestroy();
+            return false; 
+        } 
+        return false; 
+    }
+    
+    private boolean hasSpace(String str) {
+    	for ( int i = 0; i < str.length(); i++ ) {
+    		if ( str.charAt(i) == ' ' ) {
+    			return true;
+    		}
+    	}
+    	return false;
+    }
 }
